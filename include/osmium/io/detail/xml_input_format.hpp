@@ -587,7 +587,8 @@ namespace osmium {
                         case context::nd:
                             throw xml_error{"No element inside <nd> allowed"};
                         case context::member:
-                            throw xml_error{"No element inside <member> allowed"};
+                            m_context_stack.push_back(context::other);
+                            break;
                         case context::changeset:
                             if (!std::strcmp(element, "discussion")) {
                                 m_context_stack.push_back(context::discussion);
